@@ -1,0 +1,44 @@
+---
+import TextLink from "@components/TextLink.astro";
+import { resolvePath } from "@lib/utils";
+
+type Props = {
+  small?: boolean;
+};
+
+const { small } = Astro.props;
+---
+
+<div style={small ? "font-size: 0.875rem" : ""}>
+  <p>
+    I'm a software engineer and full-stack web developer based in Los Angeles,
+    CA.
+  </p>
+
+  <p>
+    At <TextLink href="#">Arroyo Web Studios</TextLink>, I build websites and
+    web applications that help Southern California businesses grow and thrive
+    online. A nomad at heart, I'm always open to opportunities and
+    collaborations around the U.S. and abroad.
+  </p>
+
+  <p>
+    Please feel free to look through my portfolio and see what I've been up to.
+    If anything piques your interest, let's chat!
+  </p>
+
+  <!-- <p>
+    The changelog is available in this post: <TextLink
+      href={resolvePath(
+        "/blog/everything-new-in-astro-milidev",
+        Astro.url.pathname,
+      )}>Everything new in Astro Milidev</TextLink
+    >. Another post <TextLink
+      href={resolvePath("/blog/getting-started", Astro.url.pathname)}
+      >Getting started</TextLink
+    > explains the configuration process step by step. The code is MIT-licensed and
+    available on <TextLink href="https://github.com/bartoszlenar/astro-milidev"
+      >GitHub</TextLink
+    >.
+  </p> -->
+</div>
