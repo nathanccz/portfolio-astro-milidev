@@ -27,7 +27,7 @@ const projects = await getCollectionEntries(
   HOME.projectEntries ?? 0,
 );
 
-const talks = await getCollectionEntries("talks", HOME.talkEntries ?? 0);
+const clients = await getCollectionEntries("clients", HOME.clientEntries ?? 0);
 ---
 
 <Layout>
@@ -77,7 +77,7 @@ const talks = await getCollectionEntries("talks", HOME.talkEntries ?? 0);
         } -->
 
         {
-          talks.length > 0 && (
+          clients.length > 0 && (
             <section class="animate space-y-6">
               <div class="flex flex-wrap items-center justify-between gap-y-2">
                 <h2 class="font-semibold text-black dark:text-white">
@@ -86,9 +86,9 @@ const talks = await getCollectionEntries("talks", HOME.talkEntries ?? 0);
                 <TextLink href="talks">all work </TextLink>
               </div>
               <ul class="not-prose flex flex-col gap-4">
-                {talks.map((talk) => (
+                {clients.map((client) => (
                   <li>
-                    <TalkCardButton entry={talk} />
+                    <TalkCardButton entry={client} />
                   </li>
                 ))}
               </ul>

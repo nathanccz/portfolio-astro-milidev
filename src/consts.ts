@@ -1,4 +1,4 @@
-export type CollectionName = "blog" | "projects" | "talks";
+export type CollectionName = "blog" | "projects" | "clients";
 
 export type GlobalSite = {
   title: string;
@@ -29,13 +29,13 @@ type CollectionSite = {
 type HomeSite = {
   blogEntries?: number;
   projectEntries?: number;
-  talkEntries?: number;
+  clientEntries?: number;
 };
 
 export const HOME: HomeSite = {
   blogEntries: 5,
   projectEntries: 3,
-  talkEntries: 3,
+  clientEntries: 3,
 };
 
 type BlogSite = CollectionSite & {

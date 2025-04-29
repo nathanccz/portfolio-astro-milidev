@@ -6,7 +6,7 @@ import PageNavigation from "@components/PageNavigation.astro";
 import TalkCardButton from "@components/TalkCardButton.astro";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
-  const { entries } = await getFilteredCollectionEntries("talks");
+  const { entries } = await getFilteredCollectionEntries("clients");
   const posts = entries.map((post) => ({
     params: { slug: post.slug },
     props: post,
