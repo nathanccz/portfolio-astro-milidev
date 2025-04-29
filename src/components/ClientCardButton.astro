@@ -14,7 +14,7 @@ const { entry } = Astro.props;
   href={resolvePath(`/${entry.collection}/${entry.slug}`, Astro.url.pathname)}
   textAbove={formatDateWithLastUpdateDate(
     entry.data.date,
-    entry.data.lastUpdateDate,
+    // entry.data.lastUpdateDate,
   )}
   text={entry.data.title}
   textBelow={entry.data.description}

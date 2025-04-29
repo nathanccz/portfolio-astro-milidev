@@ -57,7 +57,7 @@ export const PROJECTS: CollectionSite = {
   pageSize: 10,
 };
 
-export const TALKS: CollectionSite = {
+export const CLIENTS: CollectionSite = {
   pageSize: 10,
 };
 

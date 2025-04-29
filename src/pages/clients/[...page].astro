@@ -1,9 +1,9 @@
 ---
 import { getFilteredCollectionEntries } from "@lib/utils";
 import RootPageIndex from "@components/RootPageIndex.astro";
-import { TALKS } from "@consts";
+import { CLIENTS } from "@consts";
 import PageNavigation from "@components/PageNavigation.astro";
-import TalkCardButton from "@components/TalkCardButton.astro";
+import ClientCardButton from "@components/ClientCardButton.astro";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const { entries } = await getFilteredCollectionEntries("clients");
@@ -12,7 +12,7 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
     props: post,
   }));
 
-  return paginate(posts, { pageSize: TALKS.pageSize });
+  return paginate(posts, { pageSize: CLIENTS.pageSize });
 }
 
 const { page } = Astro.props as {
@@ -24,13 +24,13 @@ const entries = page.data.map((pageEntry) => ({
 }));
 ---
 
-<RootPageIndex title="Talks">
+<RootPageIndex title="Client Work">
   {
     (
       <ul class="animate not-prose mb-12 flex flex-col gap-4">
         {entries.map((entry) => (
           <li>
-            <TalkCardButton entry={entry} />
+            <ClientCardButton entry={entry} />
           </li>
         ))}
       </ul>
