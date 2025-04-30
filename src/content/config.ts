@@ -23,6 +23,7 @@ const projects = defineCollection({
     ogImage: z.string().optional(),
     draft: z.boolean().optional(),
     tags: z.array(z.string()).optional(),
+    projectType: z.string(),
   }),
 });
 
@@ -36,6 +37,7 @@ const clients = defineCollection({
     ogImage: z.string().optional(),
     draft: z.boolean().optional(),
     tags: z.array(z.string()).optional(),
+    projectType: z.string(),
   }),
 });
 

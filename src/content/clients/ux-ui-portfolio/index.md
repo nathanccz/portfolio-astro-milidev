@@ -5,6 +5,7 @@ lastUpdateDate: "2024-06-13"
 description: "lastUpdateDate affects the order"
 tags:
   - dummy-example
+projectType: "Personal portfolio"
 ---
 
 This is entry is just for pagination and navigation demo.

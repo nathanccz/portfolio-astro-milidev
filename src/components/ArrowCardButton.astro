@@ -20,7 +20,11 @@ const { href, text, textAbove, textBelow, openInNewTab = false } = Astro.props;
     class="flex flex-1 flex-col truncate"
     style="display: flex; justify-content: center;"
   >
-    {textAbove && <div class="text-xs text-gray-500">{textAbove}</div>}
+    {
+      textAbove && (
+        <div class="text-xs font-bold text-gray-500">{textAbove}</div>
+      )
+    }
     <div class="font-semibold">
       {text}
     </div>

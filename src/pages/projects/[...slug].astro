@@ -31,9 +31,9 @@ const { Content, headings } = await entry.render();
     </div>
 
     <EntryHeader {...entry.data} body={entry.body} />
-    {headings?.length ? <TableOfContents headings={headings} /> : undefined}
+    <!-- {headings?.length ? <TableOfContents headings={headings} /> : undefined} -->
     <article class="animate">
-      <hr />
+      <!-- <hr /> -->
       <Content />
     </article>
   </Container>
