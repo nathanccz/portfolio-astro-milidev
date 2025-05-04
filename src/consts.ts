@@ -12,7 +12,7 @@ export type GlobalSite = {
 };
 
 export const GLOBAL: GlobalSite = {
-  title: "My Portfolio",
+  title: "Portfolio",
   description: "a minimalistic blog+portfolio Astro theme",
   author: "Nathan Casarez",
   authorPhotoSrc: "/avatar.jpg",
