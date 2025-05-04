@@ -80,16 +80,16 @@ export const CONTACT: ContactSite = [
     displayAs: "nathanccz.dev@gmail.com",
   },
   {
-    type: "X",
-    href: "https://x.com/nathanccz_dev",
-    displayAs: "@nathanccz_dev on X",
+    type: "LinkedIn",
+    href: "https://www.linkedin.com/in/nathanccz/",
   },
   {
     type: "GitHub",
     href: "https://github.com/nathanccz",
   },
   {
-    type: "LinkedIn",
-    href: "https://www.linkedin.com/in/nathanccz/",
+    type: "X",
+    href: "https://x.com/nathanccz_dev",
+    displayAs: "@nathanccz_dev on X",
   },
 ];
