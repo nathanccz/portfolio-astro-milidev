@@ -10,8 +10,6 @@
 ---
 
 <form id="contact-form" method="POST" class="animate">
-  <input type="hidden" name="from_name" value="Nathan Casarez" />
-  <input type="hidden" name="replyto" value="nathanweb.dev@proton.me" />
   <div class="flex flex-col gap-3">
     <div class="flex gap-2">
       <div class="w-1/2">
@@ -90,9 +88,7 @@
       >Thanks for your message! I'll get back to you ASAP.</button
     >
     <button class="hidden rounded border p-2" id="error-btn"
-      >Something went wrong. Please try again or <a
-        href="mailto:nathanccz.dev@gmail.com">email me</a
-      >.</button
+      >Something went wrong. Please try again or email me.</button
     >
   </div>
 </form>
@@ -129,7 +125,13 @@
         return;
       }
 
-      const json = JSON.stringify(formObject);
+      const finalObj = {
+        ...formObject,
+        from_name: formObject.name,
+        replyto: "nathanweb.dev@proton.me",
+      };
+
+      const json = JSON.stringify(finalObj);
 
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
