@@ -87,9 +87,9 @@ export const CONTACT: ContactSite = [
     type: "GitHub",
     href: "https://github.com/nathanccz",
   },
-  {
-    type: "X",
-    href: "https://x.com/nathanccz_dev",
-    displayAs: "@nathanccz_dev on X",
-  },
+  // {
+  //   type: "X",
+  //   href: "https://x.com/nathanccz_dev",
+  //   displayAs: "@nathanccz_dev on X",
+  // },
 ];

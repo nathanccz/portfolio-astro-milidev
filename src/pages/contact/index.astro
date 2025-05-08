@@ -1,0 +1,13 @@
+---
+import ArrowCardButton from "@components/ArrowCardButton.astro";
+import RootPageIndex from "@components/RootPageIndex.astro";
+import ContactForm from "@components/ContactForm.astro";
+
+import { CONTACT } from "@consts";
+
+const linkedInContact = CONTACT.find((contact) => contact.type === "LinkedIn");
+---
+
+<RootPageIndex title="Get in touch" searchable>
+  <ContactForm />
+</RootPageIndex>

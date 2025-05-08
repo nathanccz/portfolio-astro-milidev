@@ -1,0 +1,158 @@
+---
+// type Props = {
+//   firstName: string;
+//   lastName: string;
+//   subject?: string;
+//   message: string;
+// };
+
+// const { firstName, lastName, subject, message } = Astro.props;
+---
+
+<form id="contact-form" method="POST" class="animate">
+  <input type="hidden" name="from_name" value="Nathan Casarez" />
+  <input type="hidden" name="replyto" value="nathanweb.dev@proton.me" />
+  <div class="flex flex-col gap-3">
+    <div class="flex gap-2">
+      <div class="w-1/2">
+        <div class="form-group">
+          <!-- <label class="form-label">Your Name</label> -->
+          <input
+            name="name"
+            id="name"
+            placeholder="Name (required)"
+            class="w-full rounded-lg p-2"
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="w-1/2">
+        <div class="form-group">
+          <!-- <label class="form-label">Your Email</label> -->
+          <input
+            name="email"
+            id="email"
+            placeholder="Email (required)"
+            class="w-full rounded-lg p-2"
+            type="email"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <!-- <label class="form-label">Subject</label> -->
+        <input
+          name="subject"
+          id="subject"
+          placeholder="Subject"
+          class="mb-3 w-full rounded-lg p-2"
+          type="text"
+        />
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <label class="form-label"> What can I help you with? </label>
+      <textarea
+        name="message"
+        id="message"
+        placeholder="Your message (required)"
+        class="h-[10rem] rounded-lg p-2"></textarea>
+    </div>
+
+    <button
+      class="not-prose group relative flex flex-nowrap rounded-lg border border-black/15 px-4 py-3 pr-10 transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5 dark:focus-visible:text-white"
+      id="send-btn"
+      type="submit"
+      >Send Message <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        class="absolute right-2 top-1/2 size-5 -translate-y-1/2 fill-none stroke-current stroke-2"
+      >
+        <line
+          x1="5"
+          y1="12"
+          x2="19"
+          y2="12"
+          class="translate-x-3 scale-x-0 transition-transform duration-300 ease-in-out group-hover:translate-x-0 group-hover:scale-x-100 group-focus-visible:translate-x-0 group-focus-visible:scale-x-100"
+        ></line>
+        <polyline
+          points="12 5 19 12 12 19"
+          class="-translate-x-1 transition-transform duration-300 ease-in-out group-hover:translate-x-0 group-focus-visible:translate-x-0"
+        ></polyline>
+      </svg></button
+    >
+    <button class="hidden rounded border p-2" id="loading-btn"
+      >Sending Message...</button
+    >
+    <button class="hidden rounded border p-2" id="success-btn"
+      >Thanks for your message! I'll get back to you ASAP.</button
+    >
+    <button class="hidden rounded border p-2" id="error-btn"
+      >Something went wrong. Please try again or <a
+        href="mailto:nathanccz.dev@gmail.com">email me</a
+      >.</button
+    >
+  </div>
+</form>
+
+<script>
+  const formElement = document.getElementById(
+    "contact-form",
+  ) as HTMLFormElement;
+  const sendBtn = document.getElementById("send-btn");
+  const loadingBtn = document.getElementById("loading-btn");
+  const successBtn = document.getElementById("success-btn");
+  const errorBtn = document.getElementById("error-btn");
+
+  formElement.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    sendBtn?.classList.add("hidden");
+    loadingBtn?.classList.remove("hidden");
+
+    if (formElement) {
+      const formData = new FormData(formElement);
+      formData.append("access_key", "31904935-7054-446a-b482-04ea5d153181");
+
+      const formObject: { [key: string]: string } = {};
+
+      for (const [name, value] of formData.entries()) {
+        formObject[name] = value as string;
+      }
+
+      if (!formObject.name || !formObject.email || !formObject.message) {
+        alert("Please fill out all required fields.");
+        sendBtn?.classList.remove("hidden");
+        loadingBtn?.classList.add("hidden");
+        return;
+      }
+
+      const json = JSON.stringify(formObject);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      }).then((res) => res.json());
+
+      if (res.success) {
+        loadingBtn?.classList.add("hidden");
+        successBtn?.classList.remove("hidden");
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+        window.location.reload();
+      } else {
+        loadingBtn?.classList.add("hidden");
+        errorBtn?.classList.remove("hidden");
+        await new Promise((resolve) => setTimeout(resolve, 10000));
+        window.location.reload();
+      }
+    } else {
+      console.error("Form not found!");
+    }
+  });
+</script>
