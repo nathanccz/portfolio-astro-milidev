@@ -1,20 +1,8 @@
----
-// type Props = {
-//   firstName: string;
-//   lastName: string;
-//   subject?: string;
-//   message: string;
-// };
-
-// const { firstName, lastName, subject, message } = Astro.props;
----
-
 <form id="contact-form" method="POST" class="animate">
   <div class="flex flex-col gap-3">
     <div class="flex gap-2">
       <div class="w-1/2">
         <div class="form-group">
-          <!-- <label class="form-label">Your Name</label> -->
           <input
             name="name"
             id="name"
@@ -26,7 +14,6 @@
       </div>
       <div class="w-1/2">
         <div class="form-group">
-          <!-- <label class="form-label">Your Email</label> -->
           <input
             name="email"
             id="email"
@@ -39,7 +26,6 @@
     </div>
     <div class="col-12">
       <div class="form-group">
-        <!-- <label class="form-label">Subject</label> -->
         <input
           name="subject"
           id="subject"
@@ -105,8 +91,7 @@
   formElement.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    sendBtn?.classList.add("hidden");
-    loadingBtn?.classList.remove("hidden");
+    showLoadingMessage();
 
     if (formElement) {
       const formData = new FormData(formElement);
@@ -120,8 +105,7 @@
 
       if (!formObject.name || !formObject.email || !formObject.message) {
         alert("Please fill out all required fields.");
-        sendBtn?.classList.remove("hidden");
-        loadingBtn?.classList.add("hidden");
+        removeLoadingMessage();
         return;
       }
 
@@ -143,13 +127,11 @@
       }).then((res) => res.json());
 
       if (res.success) {
-        loadingBtn?.classList.add("hidden");
-        successBtn?.classList.remove("hidden");
+        showSuccessMessage();
         await new Promise((resolve) => setTimeout(resolve, 5000));
         window.location.reload();
       } else {
-        loadingBtn?.classList.add("hidden");
-        errorBtn?.classList.remove("hidden");
+        showErrorMessage();
         await new Promise((resolve) => setTimeout(resolve, 10000));
         window.location.reload();
       }
@@ -157,4 +139,24 @@
       console.error("Form not found!");
     }
   });
+
+  function showSuccessMessage() {
+    loadingBtn?.classList.add("hidden");
+    successBtn?.classList.remove("hidden");
+  }
+
+  function showErrorMessage() {
+    loadingBtn?.classList.add("hidden");
+    errorBtn?.classList.remove("hidden");
+  }
+
+  function showLoadingMessage() {
+    sendBtn?.classList.add("hidden");
+    loadingBtn?.classList.remove("hidden");
+  }
+
+  function removeLoadingMessage() {
+    sendBtn?.classList.remove("hidden");
+    loadingBtn?.classList.add("hidden");
+  }
 </script>
