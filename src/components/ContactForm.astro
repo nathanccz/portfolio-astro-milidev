@@ -13,6 +13,7 @@ import ContactFormButton from "./ContactFormButton.astro";
             placeholder="Name (required)"
             class="w-full rounded-lg p-2"
             type="text"
+            required
           />
         </div>
       </div>
@@ -24,6 +25,7 @@ import ContactFormButton from "./ContactFormButton.astro";
             placeholder="Email (required)"
             class="w-full rounded-lg p-2"
             type="email"
+            required
           />
         </div>
       </div>
@@ -46,7 +48,8 @@ import ContactFormButton from "./ContactFormButton.astro";
         name="message"
         id="message"
         placeholder="Your message (required)"
-        class="h-[10rem] rounded-lg p-2"></textarea>
+        class="h-[10rem] rounded-lg p-2"
+        required></textarea>
     </div>
     <div id="send-btn">
       <ContactFormButton text="Send Message" />
@@ -55,14 +58,10 @@ import ContactFormButton from "./ContactFormButton.astro";
       <ContactFormButton text="Sending message..." />
     </div>
     <div class="hidden" id="success-btn">
-      <ContactFormButton
-        text="✅ Thanks for your message! I'll get back to you ASAP."
-      />
+      <ContactFormButton text="✅ Thanks for your message!" />
     </div>
     <div class="hidden" id="error-btn">
-      <ContactFormButton
-        text="❌ Something went wrong. Please try again or email me."
-      />
+      <ContactFormButton text="❌ Something went wrong. Please try again!" />
     </div>
   </div>
 </form>
@@ -91,12 +90,6 @@ import ContactFormButton from "./ContactFormButton.astro";
         formObject[name] = value as string;
       }
 
-      if (!formObject.name || !formObject.email || !formObject.message) {
-        alert("Please fill out all required fields.");
-        removeLoadingMessage();
-        return;
-      }
-
       const finalObj = {
         ...formObject,
         from_name: formObject.name,
@@ -116,7 +109,7 @@ import ContactFormButton from "./ContactFormButton.astro";
 
       if (res.success) {
         showSuccessMessage();
-        await new Promise((resolve) => setTimeout(resolve, 5000));
+        await new Promise((resolve) => setTimeout(resolve, 7000));
         window.location.reload();
       } else {
         showErrorMessage();
@@ -141,10 +134,5 @@ import ContactFormButton from "./ContactFormButton.astro";
   function showLoadingMessage() {
     sendBtn?.classList.add("hidden");
     loadingBtn?.classList.remove("hidden");
-  }
-
-  function removeLoadingMessage() {
-    sendBtn?.classList.remove("hidden");
-    loadingBtn?.classList.add("hidden");
   }
 </script>
