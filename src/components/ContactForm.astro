@@ -74,9 +74,14 @@ import ContactFormButton from "./ContactFormButton.astro";
   const loadingBtn = document.getElementById("loading-btn");
   const successBtn = document.getElementById("success-btn");
   const errorBtn = document.getElementById("error-btn");
+  let isSending = false;
 
   formElement.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (isSending) return;
+
+    isSending = true;
 
     showLoadingMessage();
 
