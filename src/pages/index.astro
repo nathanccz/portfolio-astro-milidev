@@ -10,6 +10,7 @@ import type { CollectionEntry } from "astro:content";
 import { getFilteredCollectionEntries, resolvePath } from "@lib/utils";
 import Bio from "../components/Bio.astro";
 import Contact from "@components/Contact.astro";
+import ContactForm from "@components/ContactForm.astro";
 
 async function getCollectionEntries<T extends CollectionName>(
   collectionName: T,
@@ -126,6 +127,13 @@ const clients = await getCollectionEntries("clients", HOME.clientEntries ?? 0);
             </section>
           )
         }
+        <hr class="animate border dark:border-gray-600" />
+        <section class="animate space-y-6">
+          <h1 class="animate text-3xl font-semibold text-black dark:text-white">
+            Let’s connect!
+          </h1>
+          <ContactForm />
+        </section>
       </div>
     </aside>
   </Container>
