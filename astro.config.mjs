@@ -8,7 +8,9 @@ import pagefind from "astro-pagefind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://nathancc.netlify.app",
-  base: "/",
+  base: "/portfolio",
+  output: "static",
+  adapter: undefined,
   integrations: [tailwind(), sitemap(), mdx(), pagefind()],
   markdown: {
     shikiConfig: {
